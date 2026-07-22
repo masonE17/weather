@@ -10,7 +10,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Weather App</h1>
+    <div class="main-container">
+        <div class="header-container">
+            <h1 class="header-content">TrueSky</h1>
+            <h4 class="header-content">Welcome to the Weather App</br>Get real time weather updates for any city!</h4>
+        </div>
+        <div class="card-container">
+            <div class="search-container">
+                <input type="text" id="city" name="city" placeholder="Enter city name...">
+                <button id="search-city">Search</button>
+            </div>
+            <div class="hidden">
+                <div class="weather-container">
+                    <h2>Weather Information</h2>
+                    <div class="weather-info">
+                        <p class="location">Location Name</p>
+                        <i class="fa-solid fa-cloud-sun temperature-icon"></i>
+                        <p class="temperature">Temperature</p>
+                        <p class="description">Weather Description</p>
+                        <p class="humidity">Humidity</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-error">
+                <div class="error-message">
+                    <h1>Error finding city.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/e3e7c7dc31.js" crossorigin="anonymous"></script>
     <script src="config.js"></script>
     <script src="script.js"></script>
 </body>

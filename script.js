@@ -1,8 +1,8 @@
 const apiKey = MY_API_KEY;
-const submitButton = document.getElementById("search-city");
+const submitButton = document.querySelector("#search-city");
 
 submitButton.addEventListener("click", () => {
-    const cityInput = document.getElementById("city").value;
+    const cityInput = document.querySelector("#city").value;
     if (!cityInput) {
         handleError("Please enter a city name.");
     }
@@ -24,5 +24,9 @@ async function fetchWeatherData(city) {
 }
 
 function handleError(message) {
+
+}
+
+function weatherIcon(temperature) {
 
 }

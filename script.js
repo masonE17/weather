@@ -4,9 +4,11 @@ const submitButton = document.querySelector("#search-city");
 submitButton.addEventListener("click", () => {
     const cityInput = document.querySelector("#city").value;
     if (!cityInput) {
-        handleError("Please enter a city name.");
+        console.log("Please enter a city name.");
+        return;
     }
     fetchWeatherData(cityInput);
+    document.querySelector("#city").value = "";
 });
 
 async function fetchWeatherData(city) {
@@ -14,12 +16,17 @@ async function fetchWeatherData(city) {
     try {
         const response = await fetch(apiURL);
         if (!response.ok) {
-            handleError("City not found or is not valid.");
+            console.log("Error fetching weather data.");
+            return;
         }
         const data = await response.json();
-        console.log(data);
+        document.querySelector(".location").textContent = data.name;
+        document.querySelector(".temperature").textContent = `${Math.round((data.main.temp * 9/5) - 459.67)}°F`;
+        document.querySelector(".description").textContent = data.weather[0].description;
+        document.querySelector(".humidity").textContent = `Humidity: ${data.main.humidity}%`;
+        document.querySelector("#weather-result").classList.remove("hidden");
     } catch (error) {
-        handleError("An error occured while fetching the weather data.");
+        console.log(error);
     }
 }
 

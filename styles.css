@@ -105,7 +105,8 @@
     color: rgb(68, 75, 26);
 }
 .temperature-icon {
-    font-size: 50px;
+    margin: -10px;
+    font-size: 80px;
     color: rgb(68, 75, 26);
 }
 .temperature {

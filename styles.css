@@ -122,14 +122,11 @@
     margin-top: -2px;
     color: rgb(68, 75, 26);
 }
-.error-message {
+.error-container {
     color: red;
     text-align: center;
     font-size: 18px;
 }
 .hidden {
-    display: none;
-}
-.hidden-error {
     display: none;
 }

@@ -4,7 +4,7 @@ const submitButton = document.querySelector("#search-city");
 submitButton.addEventListener("click", () => {
     const cityInput = document.querySelector("#city").value;
     if (!cityInput) {
-        console.log("Please enter a city name.");
+        handleError("Please enter a city name.");
         return;
     }
     fetchWeatherData(cityInput);
@@ -16,22 +16,32 @@ async function fetchWeatherData(city) {
     try {
         const response = await fetch(apiURL);
         if (!response.ok) {
-            console.log("Error fetching weather data.");
+            handleError("Please enter a valid city name.");
             return;
         }
         const data = await response.json();
+        const hasError = document.querySelector("#error-result").classList.contains("hidden");
+        if (!hasError) {
+            document.querySelector("#error-result").classList.add("hidden");
+        }
         document.querySelector(".location").textContent = data.name;
         document.querySelector(".temperature").textContent = `${Math.round((data.main.temp * 9/5) - 459.67)}°F`;
         document.querySelector(".description").textContent = data.weather[0].description;
         document.querySelector(".humidity").textContent = `Humidity: ${data.main.humidity}%`;
         document.querySelector("#weather-result").classList.remove("hidden");
     } catch (error) {
-        console.log(error);
+        handleError(error.message);
     }
 }
 
 function handleError(message) {
-
+    const prevValid = document.querySelector("#weather-result").classList.contains("hidden");
+    if (!prevValid) {
+        document.querySelector("#weather-result").classList.add("hidden");
+    }
+    const errorMessage = document.querySelector("#error-text");
+    errorMessage.textContent = message;
+    document.querySelector("#error-result").classList.remove("hidden");
 }
 
 function weatherIcon(temperature) {
